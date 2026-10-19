@@ -224,37 +224,6 @@
             margin-bottom: 10px;
         }
 
-        .checklist-group {
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin: 12px 0 6px;
-        }
-
-        .checklist-group:first-child {
-            margin-top: 0;
-        }
-
-        .checklist label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.88rem;
-            padding: 6px 0;
-            border-bottom: 1px dashed var(--border-color);
-            cursor: pointer;
-        }
-
-        .checklist input {
-            width: 16px;
-            height: 16px;
-            accent-color: var(--primary-color);
-        }
-
-        .checklist input:checked + span {
-            color: var(--text-light);
-            text-decoration: line-through;
-        }
     </style>
 </head>
 <body>
@@ -681,39 +650,6 @@
             <div class="event-desc">搭乘星宇航空 JX851 返台，圓滿結束北海道冬季自駕之旅。</div>
         </div>
     </div>
-
-    <!-- 行李清單 -->
-    <div class="section-title">🧳 要帶的東西</div>
-    <div class="day-card checklist" style="border-left: 4px solid var(--accent-color);">
-        <div class="checklist-group">① 不帶會出事系列</div>
-        <label><input type="checkbox"><span>★★★ 台灣駕照正本</span></label>
-        <label><input type="checkbox"><span>★★★ 日文譯本</span></label>
-        <label><input type="checkbox"><span>身分證</span></label>
-        <label><input type="checkbox"><span>護照</span></label>
-        <label><input type="checkbox"><span>租車預約 / HEP 預約</span></label>
-        <div class="checklist-group">② 其他</div>
-        <label><input type="checkbox"><span>eSIM</span></label>
-        <label><input type="checkbox"><span>手機支架</span></label>
-        <label><input type="checkbox"><span>旅平險 / 不便險</span></label>
-        <label><input type="checkbox"><span>暈車藥 / 腸胃藥 / 感冒藥</span></label>
-        <label><input type="checkbox"><span>洗臉用品</span></label>
-        <label><input type="checkbox"><span>日幣 / 信用卡</span></label>
-        <label><input type="checkbox"><span>太陽眼鏡 / 手套 / 帽子</span></label>
-        <label><input type="checkbox" checked><span>快樂的心</span></label>
-    </div>
 </div>
-<script>
-    // 勾選狀態只存在各自的瀏覽器
-    document.querySelectorAll('.checklist input').forEach(function (box, i) {
-        var key = 'hokkaido-check-' + i;
-        try {
-            var saved = localStorage.getItem(key);
-            if (saved !== null) box.checked = saved === '1';
-        } catch (e) {}
-        box.addEventListener('change', function () {
-            try { localStorage.setItem(key, box.checked ? '1' : '0'); } catch (e) {}
-        });
-    });
-</script>
 </body>
 </html>
