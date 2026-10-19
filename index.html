@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 北海道冬季自駕之旅</title>
+    <style>
+        :root {
+            --bg-color: #F4F3EF;       /* 溫潤米白 */
+            --primary-color: #8A9A86;  /* 莫蘭迪鼠尾草綠 */
+            --text-dark: #3D3D3D;      /* 深炭灰 */
+            --text-light: #7A7A7A;     /* 淺灰 */
+            --accent-color: #C8B195;   /* 大地陶土色 */
+            --card-bg: #FFFFFF;
+            --border-color: #E2E0D9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 10px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+        }
+
+        .day-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+            border: 1px solid var(--border-color);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .day-number {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+
+        .day-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            border-left: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .timeline-item:last-child {
+            border-left: 1px solid transparent;
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 9px;
+            height: 9px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .time {
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .event-title {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .event-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .transport-tag {
+            display: inline-block;
+            background-color: #F0F2EE;
+            color: #5A6B54;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #FFFFFF;
+            color: #556B2F;
+            text-decoration: none;
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 4px;
+            border: 1px solid #8A9A86;
+            font-weight: 500;
+            margin-top: 2px;
+            margin-right: 5px;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+
+        .map-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .ref-btn {
+            border-color: var(--accent-color);
+            color: #8A6F4E;
+        }
+
+        .ref-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .info-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 10px;
+        }
+
+        .info-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-dark);
+            vertical-align: top;
+        }
+
+        .route-map {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        ul.bullets {
+            padding-left: 15px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        ul.bullets li {
+            margin-bottom: 10px;
+        }
+
+        .checklist-group {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 12px 0 6px;
+        }
+
+        .checklist-group:first-child {
+            margin-top: 0;
+        }
+
+        .checklist label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            padding: 6px 0;
+            border-bottom: 1px dashed var(--border-color);
+            cursor: pointer;
+        }
+
+        .checklist input {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary-color);
+        }
+
+        .checklist input:checked + span {
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>2026 北海道冬季自駕之旅</h1>
+        <p>11/15 — 11/21 • 登別溫泉、洞爺湖、美瑛青池、小樽運河與札幌</p>
+    </header>
+
+    <!-- 關鍵資訊 -->
+    <div class="section-title">📝 航班與租車資訊</div>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>項目</th>
+                <th>時間</th>
+                <th>備註</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>去程 JX850</b><br><small>桃園 T1 → 新千歲 T1</small></td>
+                <td>11/15 (日)<br>09:15 – 14:05</td>
+                <td>星宇航空</td>
+            </tr>
+            <tr>
+                <td><b>ORIX 租車</b><br><small>新千歲機場店</small></td>
+                <td>取車 11/15 15:30<br>還車 11/21 13:00</td>
+                <td>EWS(6) 級 油電車（Sienta Hybrid / Freed e:HEV 等），含雪胎、ETC、CDW、RAP，合計 ¥96,470</td>
+            </tr>
+            <tr>
+                <td><b>回程 JX851</b><br><small>新千歲 T1 → 桃園 T1</small></td>
+                <td>11/21 (六)<br>15:20 – 19:05</td>
+                <td>星宇航空，提早完成還車與退稅</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 路線圖 -->
+    <div class="section-title">🗺️ 行程相對位置地圖</div>
+    <div class="day-card">
+        <img class="route-map" src="images/route-map.png" alt="北海道自駕路線圖：新千歲 → 登別 → 洞爺湖 → 羊蹄山 → 札幌，往返美瑛與小樽，最後回新千歲">
+        <p class="event-desc" style="margin-top:10px;margin-bottom:0;">① 抵達 → ② 登別 → ③ 洞爺湖 → ④ 羊蹄山 → ⑤ 札幌 → ⑥ 美瑛 → ⑦ 札幌 → ⑧ 小樽 → ⑨ 札幌 → ⑩ 新千歲機場 → ⑪ 返台</p>
+    </div>
+
+    <!-- 每日行程 -->
+    <div class="section-title">🗓️ 每日行程與地圖</div>
+
+    <!-- Day 1 -->
+    <div class="day-card">
+        <div class="day-header">
+            <span class="day-number">Day 1</span>
+            <span class="day-date">11/15 (日) 桃園 ➔ 新千歲 ➔ 登別</span>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:15 – 14:05</span>
+            <div class="event-title">桃園 (TPE T1) ✈️ 新千歲 (CTS T1)</div>
+            <div class="event-desc">搭乘星宇航空 JX850 前往北海道。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=新千歳空港" target="_blank" class="map-btn">📍 新千歲機場</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">15:30 – 16:00</span>
+            <div class="event-title">租車手續・取車</div>
+            <div class="event-desc">新千歲 ORIX。確認：雪胎 (studless)、ETC / HEP、油種（レギュラー）、車況拍照。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=オリックスレンタカー+新千歳空港店" target="_blank" class="map-btn">📍 ORIX 新千歲機場店</a>
+            <a href="https://car.orix.co.jp/tw/shops/?md=view&amp;shops_pk=1" target="_blank" class="map-btn ref-btn">🔗 店舖資訊</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">16:00 – 18:00</span>
+            <div class="event-title">新千歲 ➔ 登別</div>
+            <div class="transport-tag">🚗 自駕 約 1.5–2 小時</div>
+            <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=新千歳空港&amp;destination=登別温泉&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">18:00 – 18:20</span>
+            <div class="event-title">入住：登別 Airbnb</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=登別温泉" target="_blank" class="map-btn">📍 登別溫泉</a>
+            <a href="https://www.airbnb.com.tw/rooms/1592399709674555675" target="_blank" class="map-btn ref-btn">🔗 Airbnb 房源</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">18:20 – 19:30</span>
+            <div class="event-title">晚餐</div>
+            <div class="event-desc">登別周邊（未定）。</div>
+        </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card">
+        <div class="day-header">
+            <span class="day-number">Day 2</span>
+            <span class="day-date">11/16 (一) 登別 ➔ 洞爺湖</span>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:00 – 09:30</span>
+            <div class="event-title">Check out</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:30 – 10:30</span>
+            <div class="event-title">地獄谷 + 大湯沼展望台</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=登別地獄谷" target="_blank" class="map-btn">📍 地獄谷</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=大湯沼展望台" target="_blank" class="map-btn">📍 大湯沼展望台</a>
+            <a href="https://noboribetsu-spa.jp/tw/spot/spot0034/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">10:30 – 12:00</span>
+            <div class="event-title">登別 ➔ 洞爺湖</div>
+            <div class="transport-tag">🚗 自駕 約 1.5 小時</div>
+            <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=登別地獄谷&amp;destination=洞爺湖温泉&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">12:00 – 13:00</span>
+            <div class="event-title">午餐</div>
+            <div class="event-desc">洞爺湖周邊（未定）。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">13:00 – 15:00</span>
+            <div class="event-title">有珠山展望台 & 纜車</div>
+            <div class="event-desc">與 SAIRO 展望台視情況擇一。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=有珠山ロープウェイ" target="_blank" class="map-btn">📍 有珠山纜車</a>
+            <a href="https://jesychen.com/usuzan-popeway/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">15:00 – 16:00</span>
+            <div class="event-title">SAIRO 展望台</div>
+            <div class="event-desc">與有珠山視情況擇一。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=サイロ展望台+洞爺湖" target="_blank" class="map-btn">📍 SAIRO 展望台</a>
+            <a href="https://gototravel.tw/silo-viewing-platform/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">16:30 – 17:00</span>
+            <div class="event-title">入住：洞爺湖 Airbnb</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=洞爺湖温泉" target="_blank" class="map-btn">📍 洞爺湖溫泉</a>
+            <a href="https://www.airbnb.com.tw/rooms/30776740" target="_blank" class="map-btn ref-btn">🔗 Airbnb 房源</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">18:00 – 19:00</span>
+            <div class="event-title">晚餐</div>
+            <div class="event-desc">洞爺湖周邊（未定）。</div>
+        </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-card">
+        <div class="day-header">
+            <span class="day-number">Day 3</span>
+            <span class="day-date">11/17 (二) 洞爺湖 ➔ 羊蹄山 ➔ 札幌</span>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:00 – 09:30</span>
+            <div class="event-title">早餐</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">10:00 – 10:20</span>
+            <div class="event-title">Check out</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">10:20 – 11:20</span>
+            <div class="event-title">洞爺湖 ➔ 羊蹄山</div>
+            <div class="transport-tag">🚗 自駕 約 1 小時</div>
+            <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=洞爺湖温泉&amp;destination=京極ふきだし公園&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">11:30 – 12:30</span>
+            <div class="event-title">午餐</div>
+            <div class="event-desc">羊蹄山周邊，視情況跳過不停。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">13:00 – 14:00</span>
+            <div class="event-title">京極ふきだし公園（羊蹄山湧泉）</div>
+            <div class="event-desc">視情況跳過不停。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=京極ふきだし公園" target="_blank" class="map-btn">📍 京極ふきだし公園</a>
+            <a href="https://www.youtube.com/watch?v=y38Y0RJ4i1Q" target="_blank" class="map-btn ref-btn">▶️ 影片</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">14:00 – 16:00</span>
+            <div class="event-title">羊蹄山 ➔ 札幌</div>
+            <div class="transport-tag">🚗 自駕 約 2 小時</div>
+            <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=京極ふきだし公園&amp;destination=Randor+Hotel+Sapporo+Prestige&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">16:00 – 16:30</span>
+            <div class="event-title">入住：Randor Hotel Sapporo Prestige</div>
+            <div class="event-desc">札幌連住 4 晚（11/17 – 11/21）。</div>
+            <a href="https://www.google.com/maps/search/Randor+Hotel+Sapporo+Prestige/@43.0529311,141.349179,18z" target="_blank" class="map-btn">📍 飯店位置</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">18:00 – 19:00</span>
+            <div class="event-title">晚餐</div>
+            <div class="event-desc">札幌（未定）。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">19:00 – 20:00</span>
+            <div class="event-title">薄野逛街</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=すすきの+札幌" target="_blank" class="map-btn">📍 薄野</a>
+            <a href="https://www.youtube.com/watch?v=p5XtXqsCy54" target="_blank" class="map-btn ref-btn">▶️ 影片</a>
+        </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="day-card">
+        <div class="day-header">
+            <span class="day-number">Day 4</span>
+            <span class="day-date">11/18 (三) 札幌 ➔ 美瑛 ➔ 札幌</span>
+        </div>
+        <div class="timeline-item">
+            <span class="time">08:30 – 09:00</span>
+            <div class="event-title">早餐</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:00 – 11:30</span>
+            <div class="event-title">札幌 ➔ 美瑛</div>
+            <div class="transport-tag">🚗 自駕 約 2.5 小時</div>
+            <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Randor+Hotel+Sapporo+Prestige&amp;destination=美瑛駅&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">12:00 – 13:00</span>
+            <div class="event-title">午餐</div>
+            <div class="event-desc">美瑛（未定）。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">13:00 – 14:00</span>
+            <div class="event-title">美瑛神社</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=美瑛神社" target="_blank" class="map-btn">📍 美瑛神社</a>
+            <a href="https://tiyama.net/hokkaidojinjacho/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">14:00 – 16:00</span>
+            <div class="event-title">白金青池 & 白鬚瀑布</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=白金青い池" target="_blank" class="map-btn">📍 白金青池</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=白ひげの滝" target="_blank" class="map-btn">📍 白鬚瀑布</a>
+            <a href="https://hokkaido.letsgojp.com/archives/16937/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">16:00 – 17:00</span>
+            <div class="event-title">下午茶：Ferme La Terre Biei</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Ferme+La+Terre+Biei" target="_blank" class="map-btn">📍 Ferme La Terre</a>
+            <a href="https://flyblog.cc/ferme-la/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">17:00 – 17:40</span>
+            <div class="event-title">青池冬季點燈</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=白金青い池" target="_blank" class="map-btn">📍 白金青池</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">18:00 – 21:00</span>
+            <div class="event-title">美瑛 ➔ 札幌</div>
+            <div class="transport-tag">🚗 自駕 約 2.5 小時</div>
+            <div class="event-desc">晚餐可能在休息站買。</div>
+            <a href="https://www.google.com/maps/dir/?api=1&amp;origin=白金青い池&amp;destination=Randor+Hotel+Sapporo+Prestige&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">21:00 – 22:00</span>
+            <div class="event-title">藥妝逛街 & 休息</div>
+            <div class="event-desc">自由活動。</div>
+        </div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="day-card">
+        <div class="day-header">
+            <span class="day-number">Day 5</span>
+            <span class="day-date">11/19 (四) 札幌 ➔ 小樽 ➔ 札幌</span>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:00 – 09:30</span>
+            <div class="event-title">早餐</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:30 – 10:20</span>
+            <div class="event-title">札幌 ➔ 小樽</div>
+            <div class="transport-tag">🚗 自駕 約 50 分鐘</div>
+            <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Randor+Hotel+Sapporo+Prestige&amp;destination=小樽三角市場&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">10:20 – 11:30</span>
+            <div class="event-title">三角市場</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=小樽三角市場" target="_blank" class="map-btn">📍 三角市場</a>
+            <a href="https://bobbytravel.tw/sankaku-market/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">11:30 – 12:20</span>
+            <div class="event-title">小樽運河 + 淺草橋</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=小樽運河+浅草橋" target="_blank" class="map-btn">📍 淺草橋</a>
+            <a href="https://www.youtube.com/watch?v=H4TA6jlNbro" target="_blank" class="map-btn ref-btn">▶️ 影片</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">12:20 – 13:30</span>
+            <div class="event-title">午餐</div>
+            <div class="event-desc">小樽（未定）。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">13:30 – 15:00</span>
+            <div class="event-title">堺町通</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=小樽+堺町通り" target="_blank" class="map-btn">📍 堺町通</a>
+            <a href="https://www.youtube.com/watch?v=I7qa0qNfxFo" target="_blank" class="map-btn ref-btn">▶️ 影片</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">15:00 – 15:40</span>
+            <div class="event-title">下午茶</div>
+            <div class="event-desc">小樽（未定）。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">16:00 – 18:00</span>
+            <div class="event-title">青之運河</div>
+            <div class="event-desc">小樽運河冬季點燈活動。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=小樽運河" target="_blank" class="map-btn">📍 小樽運河</a>
+            <a href="https://otaru.gr.jp/citizen/winter-bluecanal-2026" target="_blank" class="map-btn ref-btn">🔗 活動資訊</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">18:00 – 19:00</span>
+            <div class="event-title">小樽 ➔ 札幌</div>
+            <div class="transport-tag">🚗 自駕 約 50 分鐘</div>
+            <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=小樽運河&amp;destination=Randor+Hotel+Sapporo+Prestige&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">19:00 – 20:00</span>
+            <div class="event-title">晚餐</div>
+            <div class="event-desc">札幌（未定）。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">21:00 – 22:00</span>
+            <div class="event-title">藥妝逛街 & 休息</div>
+            <div class="event-desc">自由活動。</div>
+        </div>
+    </div>
+
+    <!-- Day 6 -->
+    <div class="day-card">
+        <div class="day-header">
+            <span class="day-number">Day 6</span>
+            <span class="day-date">11/20 (五) 札幌市區整日</span>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:00 – 10:00</span>
+            <div class="event-title">二條市場</div>
+            <div class="event-desc">與北海道大學視情況擇一。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=二条市場+札幌" target="_blank" class="map-btn">📍 二條市場</a>
+            <a href="https://hokkaido.letsgojp.com/archives/395944/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">10:00 – 11:00</span>
+            <div class="event-title">北海道大學</div>
+            <div class="event-desc">與二條市場視情況擇一。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=北海道大学" target="_blank" class="map-btn">📍 北海道大學</a>
+            <a href="https://hokkaido.letsgojp.com/archives/19536/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">11:00 – 12:00</span>
+            <div class="event-title">札幌諏訪神社</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=札幌諏訪神社" target="_blank" class="map-btn">📍 札幌諏訪神社</a>
+            <a href="https://janice.life/sapporo-suwajinja/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">12:00 – 13:00</span>
+            <div class="event-title">午餐</div>
+            <div class="event-desc">札幌（未定）。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">13:00 – 16:00</span>
+            <div class="event-title">北海道神宮 & 伏見稻荷神社</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=北海道神宮" target="_blank" class="map-btn">📍 北海道神宮</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=札幌伏見稲荷神社" target="_blank" class="map-btn">📍 伏見稻荷神社</a>
+            <a href="https://www.youtube.com/watch?v=7rQ4r11Af9E" target="_blank" class="map-btn ref-btn">▶️ 影片</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">16:00 – 18:00</span>
+            <div class="event-title">大通 / 狸小路</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=大通公園+札幌" target="_blank" class="map-btn">📍 大通公園</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=狸小路商店街" target="_blank" class="map-btn">📍 狸小路</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">18:00 – 19:00</span>
+            <div class="event-title">晚餐</div>
+            <div class="event-desc">札幌（未定）。</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">19:30 – 21:00</span>
+            <div class="event-title">藻岩山夜景</div>
+            <div class="event-desc">需要門票（最晚 22:00）。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=もいわ山ロープウェイ+山麓駅" target="_blank" class="map-btn">📍 藻岩山纜車山麓站</a>
+            <a href="https://hokkaido.letsgojp.com/archives/640881/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">21:00 – 22:00</span>
+            <div class="event-title">藥妝逛街 & 休息</div>
+            <div class="event-desc">自由活動。</div>
+        </div>
+    </div>
+
+    <!-- Day 7 -->
+    <div class="day-card">
+        <div class="day-header">
+            <span class="day-number">Day 7</span>
+            <span class="day-date">11/21 (六) 札幌 ➔ 新千歲 ➔ 歸途</span>
+        </div>
+        <div class="timeline-item">
+            <span class="time">08:00 – 08:30</span>
+            <div class="event-title">早餐</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:00 – 09:40</span>
+            <div class="event-title">Check out</div>
+        </div>
+        <div class="timeline-item">
+            <span class="time">09:40 – 11:00</span>
+            <div class="event-title">札幌 ➔ 新千歲</div>
+            <div class="transport-tag">🚗 自駕 約 1 小時</div>
+            <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Randor+Hotel+Sapporo+Prestige&amp;destination=オリックスレンタカー+新千歳空港店&amp;travelmode=driving" target="_blank" class="map-btn">🧭 開車導航（還車）</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">11:00 – 13:00</span>
+            <div class="event-title">加油 & 還車 / 午餐</div>
+            <div class="event-desc">還車前加滿油（レギュラー），13:00 前完成還車。</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=ガソリンスタンド+新千歳空港" target="_blank" class="map-btn">📍 機場附近加油站</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">13:00 – 14:00</span>
+            <div class="event-title">退稅 & 伴手禮</div>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=新千歳空港+国内線ターミナル" target="_blank" class="map-btn">📍 新千歲機場國內線商店街</a>
+        </div>
+        <div class="timeline-item">
+            <span class="time">15:20 – 19:05</span>
+            <div class="event-title">新千歲 (CTS T1) ✈️ 桃園 (TPE T1)</div>
+            <div class="event-desc">搭乘星宇航空 JX851 返台，圓滿結束北海道冬季自駕之旅。</div>
+        </div>
+    </div>
+
+    <!-- 行李清單 -->
+    <div class="section-title">🧳 要帶的東西</div>
+    <div class="day-card checklist" style="border-left: 4px solid var(--accent-color);">
+        <div class="checklist-group">① 不帶會出事系列</div>
+        <label><input type="checkbox"><span>★★★ 台灣駕照正本</span></label>
+        <label><input type="checkbox"><span>★★★ 日文譯本</span></label>
+        <label><input type="checkbox"><span>身分證</span></label>
+        <label><input type="checkbox"><span>護照</span></label>
+        <label><input type="checkbox"><span>租車預約 / HEP 預約</span></label>
+        <div class="checklist-group">② 其他</div>
+        <label><input type="checkbox"><span>eSIM</span></label>
+        <label><input type="checkbox"><span>手機支架</span></label>
+        <label><input type="checkbox"><span>旅平險 / 不便險</span></label>
+        <label><input type="checkbox"><span>暈車藥 / 腸胃藥 / 感冒藥</span></label>
+        <label><input type="checkbox"><span>洗臉用品</span></label>
+        <label><input type="checkbox"><span>日幣 / 信用卡</span></label>
+        <label><input type="checkbox"><span>太陽眼鏡 / 手套 / 帽子</span></label>
+        <label><input type="checkbox" checked><span>快樂的心</span></label>
+    </div>
+</div>
+<script>
+    // 勾選狀態只存在各自的瀏覽器
+    document.querySelectorAll('.checklist input').forEach(function (box, i) {
+        var key = 'hokkaido-check-' + i;
+        try {
+            var saved = localStorage.getItem(key);
+            if (saved !== null) box.checked = saved === '1';
+        } catch (e) {}
+        box.addEventListener('change', function () {
+            try { localStorage.setItem(key, box.checked ? '1' : '0'); } catch (e) {}
+        });
+    });
+</script>
+</body>
+</html>
