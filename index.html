@@ -224,6 +224,26 @@
             margin-bottom: 10px;
         }
 
+/* Day 5 左右雙方案 */
+.day5-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    padding: 15px;
+}
+
+.day5-column {
+    min-width: 0;
+}
+
+@media (max-width: 768px) {
+    .day5-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
     </style>
 </head>
 <body>
@@ -237,7 +257,7 @@
     <div class="section-title">Map</div>
     <div class="day-card">
         <img class="route-map" src="images/route-map.png" alt="北海道自駕路線圖：新千歲 → 登別 → 洞爺湖 → 羊蹄山 → 札幌，往返美瑛與小樽，最後回新千歲">
-        <p class="event-desc" style="margin-top:10px;margin-bottom:0;">① 抵達 → ② 登別 → ③ 洞爺湖 → ④ 羊蹄山 → ⑤ 札幌 → ⑥ 美瑛 → ⑦ 札幌 → ⑧ 小樽 → ⑨ 札幌 → ⑩ 新千歲機場 → ⑪ 返台</p>
+        <p class="event-desc" style="margin-top:10px;margin-bottom:0;">① 抵達 → ② 登別 → ③ 洞爺湖 → ④ 羊蹄山 → ⑤ 札幌 → ⑥ 美瑛 → ⑦ 札幌 → ⑧ 小樽 → ⑨ 札幌 → ⑩ 新千歲機場</p>
     </div>
 
     <!-- 每日行程 -->
@@ -277,6 +297,7 @@
         <div class="timeline-item">
             <span class="time">20:00</span>
             <div class="event-title">Check in : 登別</div>
+            <div class="event-desc">airbnb</div>
         </div>
     </div>
 
@@ -284,27 +305,27 @@
     <div class="day-card">
         <div class="day-header">
             <span class="day-number">Day 2</span>
-            <span class="day-date">11/16 (一) 登別 ➔ 洞爺湖</span>
+            <span class="day-date">11/16 (MON) 登別 ➔ 洞爺湖</span>
         </div>
         <div class="timeline-item">
             <span class="time">09:00 – 09:30</span>
             <div class="event-title">Check out</div>
         </div>
         <div class="timeline-item">
-            <span class="time">09:30 – 10:30</span>
+            <span class="time">09:30 – 11:30</span>
             <div class="event-title">地獄谷 + 大湯沼展望台</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=登別地獄谷" target="_blank" class="map-btn">📍 地獄谷</a>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=大湯沼展望台" target="_blank" class="map-btn">📍 大湯沼展望台</a>
             <a href="https://noboribetsu-spa.jp/tw/spot/spot0034/" target="_blank" class="map-btn ref-btn">🔗 Reference</a>
         </div>
         <div class="timeline-item">
-            <span class="time">10:30 – 12:00</span>
+            <span class="time">11:30 – 13:00</span>
             <div class="event-title">登別 ➔ 洞爺湖</div>
             <div class="transport-tag">🚗 約 1.5 hr</div>
             <br><a href="https://www.google.com/maps/dir/?api=1&amp;origin=登別地獄谷&amp;destination=洞爺湖温泉&amp;travelmode=driving" target="_blank" class="map-btn">🧭導航</a>
         </div>
         <div class="timeline-item">
-            <span class="time">12:00 – 13:00</span>
+            <span class="time">13:00 – 14:00</span>
             <div class="event-title">午餐</div>
             <div class="event-desc">洞爺湖溫泉街湖畔</div>
             <a href="https://www.google.com/maps/place/Matsumaeya/@42.5811959,140.7476901,12z/data=!4m6!3m5!1s0x5f9fe297d4571d63:0x74c9fb383177fe5f!8m2!3d42.564849!4d140.82188!16s%2Fg%2F1v8k_fts?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn">📍 めしどころ松前屋</a>
@@ -326,14 +347,14 @@
         <div class="timeline-item">
             <span class="time">16:30 – 17:00</span>
             <div class="event-title">Check in : 洞爺湖</div>
+            <div class="event-desc">airbnb</div>
         </div>
         <div class="timeline-item">
             <span class="time">17:30 – 18:30</span>
             <div class="event-title">晚餐</div>
-            <div class="event-desc">（未定）。</div>
+            <a href="" target="_blank" class="map-btn">📍 未定</a>
              <a href="https://www.google.com/maps/place/Toya+Onsen+Toya+Ikoinoie/@42.63957,131.0668476,6z/data=!4m10!1m2!2m1!1sToya+Ikoi+no+Ie!3m6!1s0x5f7556efc761169b:0x43f429bc7d96c35c!8m2!3d42.63957!4d140.8227069!15sCg9Ub3lhIElrb2kgbm8gSWWSAQ1kYXlfdXNlX29uc2Vu4AEA!16s%2Fg%2F1w0scp5d?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn">📍 Toya Onsen Toya Ikoinoie</a>
         </div>
-        
     </div>
 
     <!-- Day 3 -->
@@ -341,7 +362,7 @@
 <div class="day-card">
     <div class="day-header">
         <span class="day-number">Day 3</span>
-        <span class="day-date">11/17 (二) 洞爺湖 ➔ 札幌</span>
+        <span class="day-date">11/17 (TUE) 洞爺湖 ➔ 札幌</span>
     </div>
     <div class="timeline-item">
         <span class="time">10:00 – 10:20</span>
@@ -370,7 +391,6 @@
     <div class="timeline-item">
         <span class="time">16:00 – 16:30</span>
         <div class="event-title">Check in：札幌</div>
-        <div class="event-desc">抵達札幌市區、辦理入住及稍作休息。</div>
     </div>
 
     <div class="timeline-item">
@@ -394,7 +414,7 @@
     <div class="day-card">
         <div class="day-header">
             <span class="day-number">Day 4</span>
-            <span class="day-date">11/18 (三) 札幌 ➔ 小樽 ➔ 札幌</span>
+            <span class="day-date">11/18 (WED) 札幌 ➔ 小樽 ➔ 札幌</span>
         </div>
         <div class="timeline-item">
             <span class="time">09:30 – 10:20</span>
@@ -435,7 +455,7 @@
         <div class="timeline-item">
             <span class="time">16:00 – 18:00</span>
             <div class="event-title">青之運河</div>
-            <div class="event-desc">小樽運河冬季點燈活動。</div>
+            <div class="event-desc">小樽運河冬季點燈。</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=小樽運河" target="_blank" class="map-btn">📍 小樽運河</a>
             <a href="https://otaru.gr.jp/citizen/winter-bluecanal-2026" target="_blank" class="map-btn ref-btn">🔗 Reference</a>
         </div>
@@ -451,141 +471,184 @@
             <a href=""
             target="_blank" class="map-btn">📍 未定</a>
         </div>
-        <div class="timeline-item">
-            <span class="time">21:00 – 22:00</span>
-            <div class="event-title">藥妝逛街 & 休息</div>
-            <div class="event-desc">自由活動。</div>
-        </div>
     </div>
 
     <!-- Day 5 -->
 
+
 <div class="day-card">
     <div class="day-header">
         <span class="day-number">Day 5</span>
-        <span class="day-date">11/19 (四) 札幌 ➔ 美瑛 ➔ 札幌</span>
+        <span class="day-date">11/19 (THU) 札幌 ➔ 美瑛 ➔ 札幌</span>
     </div>
 
-    <div class="timeline-item">
-        <span class="time">08:30 – 11:00</span>
-        <div class="event-title">札幌 ➔ 美瑛</div>
-        <div class="transport-tag">🚗 約 2.5 hr</div>
-        <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Randor+Hotel+Sapporo+Prestige&amp;destination=Ferme+La+Terre+Biei&amp;travelmode=driving" target="_blank" class="map-btn">🧭導航</a>
-    </div>
+    <div class="day5-options">
 
-    <div class="timeline-item">
-        <span class="time">11:00 – 12:00</span>
-        <div class="event-title">午餐：Ferme La Terre Biei</div>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Ferme+La+Terre+Biei" target="_blank" class="map-btn">📍 Ferme La Terre</a>
-    </div>
+        <div class="day5-column">
 
-    <div class="timeline-item">
-        <span class="time">12:15 – 12:45</span>
-        <div class="event-title">美瑛神社</div>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=美瑛神社" target="_blank" class="map-btn">📍 美瑛神社</a>
-    </div>
+            <div class="event-title">PLAN A｜美瑛</div>
 
-    <div class="timeline-item">
-        <span class="time">12:45 – 13:20</span>
-        <div class="event-title">美瑛 ➔ 白金地區</div>
-        <div class="transport-tag">🚗 約 35 min</div>
-    </div>
+            <div class="timeline-item">
+                <span class="time">08:30 – 11:00</span>
+                <div class="event-title">札幌 ➔ 美瑛</div>
+                <div class="transport-tag">🚗 約 2.5 hr</div>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Randor+Hotel+Sapporo+Prestige&amp;destination=Ferme+La+Terre+Biei&amp;travelmode=driving" target="_blank" class="map-btn">🧭導航</a>
+            </div>
 
-    <div class="timeline-item">
-        <span class="time">13:20 – 14:00</span>
-        <div class="event-title">白鬚瀑布</div>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=白ひげの滝" target="_blank" class="map-btn">📍 白鬚瀑布</a>
-    </div>
+            <div class="timeline-item">
+                <span class="time">11:00 – 12:00</span>
+                <div class="event-title">午餐：Ferme La Terre Biei</div>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=Ferme+La+Terre+Biei" target="_blank" class="map-btn">📍 Ferme La Terre</a>
+            </div>
 
-    <div class="timeline-item">
-        <span class="time">14:10 – 14:50</span>
-        <div class="event-title">白金青池</div>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=白金青い池" target="_blank" class="map-btn">📍 白金青池</a>
-    </div>
+            <div class="timeline-item">
+                <span class="time">12:15 – 12:45</span>
+                <div class="event-title">美瑛神社</div>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=美瑛神社" target="_blank" class="map-btn">📍 美瑛神社</a>
+            </div>
 
-    <div class="timeline-item">
-        <span class="time">15:00 – 17:30</span>
-        <div class="event-title">美瑛 ➔ 札幌</div>
-        <div class="transport-tag">🚗 約 2.5 hr</div>
-        <a href="https://www.google.com/maps/dir/?api=1&amp;origin=白金青い池&amp;destination=Randor+Hotel+Sapporo+Prestige&amp;travelmode=driving" target="_blank" class="map-btn">🧭導航</a>
-    </div>
+            <div class="timeline-item">
+                <span class="time">12:45 – 13:20</span>
+                <div class="event-title">美瑛 ➔ 白金地區</div>
+                <div class="transport-tag">🚗 約 35 min</div>
+            </div>
 
-    <div class="timeline-item">
-        <span class="time">18:00 – 19:00</span>
-        <div class="event-title">晚餐</div>
-        <a href="" target="_blank" class="map-btn">📍 未定</a>
-    </div>
+            <div class="timeline-item">
+                <span class="time">13:20 – 14:00</span>
+                <div class="event-title">白鬚瀑布 &amp; 白金青池</div>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=白ひげの滝" target="_blank" class="map-btn">📍 白鬚瀑布</a>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=白金青い池" target="_blank" class="map-btn">📍 白金青池</a>
+            </div>
 
-    <div class="timeline-item">
-        <span class="time">19:00 – 20:00</span>
-        <div class="event-title">藥妝逛街 & 休息</div>
+            <div class="timeline-item">
+                <span class="time">15:00 – 17:30</span>
+                <div class="event-title">美瑛 ➔ 札幌</div>
+                <div class="transport-tag">🚗 約 2.5 hr</div>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=白金青い池&amp;destination=Randor+Hotel+Sapporo+Prestige&amp;travelmode=driving" target="_blank" class="map-btn">🧭導航</a>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time">18:00 – 19:00</span>
+                <div class="event-title">晚餐</div>
+                <a href="" target="_blank" class="map-btn">📍 未定</a>
+            </div>
+
+        </div>
+
+        <!-- 右側：方案 B 札幌購物 -->
+        <div class="day5-column">
+
+            <div class="event-title">PLAN B｜札幌市區</div>
+
+            <div class="timeline-item">
+                <span class="time">10:00 – 10:30</span>
+                <div class="event-title">飯店 ➔ 札幌工廠</div>
+                <div class="transport-tag">🚗 約 30 min</div>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Randor+Hotel+Sapporo+Prestige&amp;destination=札幌ファクトリー&amp;travelmode=driving" target="_blank" class="map-btn">🧭導航</a>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time">10:30 – 12:30</span>
+                <div class="event-title">札幌工廠</div>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=札幌ファクトリー" target="_blank" class="map-btn">📍 札幌工廠</a>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time">12:30 – 13:30</span>
+                <div class="event-title">午餐</div>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time">14:00 – 15:45</span>
+                <div class="event-title">札幌 Stellar Place 購物</div>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=札幌ステラプレイス" target="_blank" class="map-btn">📍 Stellar Place</a>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time">15:45 – 16:30</span>
+                <div class="event-title">下午茶：Afternoon Tea TEAROOM</div>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=アフタヌーンティー・ティールーム+大丸札幌店" target="_blank" class="map-btn">📍 Afternoon Tea</a>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time">16:30 – 17:30</span>
+                <div class="event-title">北海道廳舊本廳舍（赤れんが庁舎） / 札幌市時計台</div>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=北海道庁旧本庁舎（赤れんが庁舎）" target="_blank" class="map-btn">📍 北海道廳舊本廳舍</a>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=札幌市時計台" target="_blank" class="map-btn">📍 札幌市時計台</a>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time">18:00 – 19:00</span>
+                <div class="event-title">晚餐</div>
+                <a href="" target="_blank" class="map-btn">📍 未定</a>
+            </div>
+
+        </div>
     </div>
 </div>
+
+
+
+
+
 
     <!-- Day 6 -->
     <div class="day-card">
         <div class="day-header">
             <span class="day-number">Day 6</span>
-            <span class="day-date">11/20 (五) 札幌市區整日</span>
+            <span class="day-date">11/20 (FRI) 札幌市區</span>
         </div>
         <div class="timeline-item">
             <span class="time">09:00 – 10:00</span>
             <div class="event-title">二條市場</div>
-            <div class="event-desc">與北海道大學視情況擇一。</div>
+            <div class="event-desc">起不來就跳過</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=二条市場+札幌" target="_blank" class="map-btn">📍 二條市場</a>
             <a href="https://hokkaido.letsgojp.com/archives/395944/" target="_blank" class="map-btn ref-btn">🔗 Reference</a>
         </div>
         <div class="timeline-item">
             <span class="time">11:00 – 12:00</span>
-            <div class="event-title">札幌諏訪神社</div>
+            <div class="event-title">札幌諏訪神社 & 北海道大學(視情況擇一)</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=札幌諏訪神社" target="_blank" class="map-btn">📍 札幌諏訪神社</a>
             <a href="https://janice.life/sapporo-suwajinja/" target="_blank" class="map-btn ref-btn">🔗 Reference</a>
-        </div>
-        
-        <div class="timeline-item">
-            <span class="time">10:00 – 11:00</span>
-            <div class="event-title">北海道大學</div>
-            <div class="event-desc">與二條市場視情況擇一。</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=北海道大学" target="_blank" class="map-btn">📍 北海道大學</a>
             <a href="https://hokkaido.letsgojp.com/archives/19536/" target="_blank" class="map-btn ref-btn">🔗 Reference</a>
         </div>
 
+
         <div class="timeline-item">
             <span class="time">12:00 – 13:00</span>
             <div class="event-title">午餐</div>
-            <div class="event-desc">札幌（未定）。</div>
+            <a href="" target="_blank" class="map-btn">📍 未定</a>
         </div>
+
         <div class="timeline-item">
-            <span class="time">13:00 – 16:00</span>
-            <div class="event-title">北海道神宮 & 伏見稻荷神社(買酒)</div>
+            <span class="time">13:00 – 15:00</span>
+            <div class="event-title">北海道神宮 & 伏見稻荷神社</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=北海道神宮" target="_blank" class="map-btn">📍 北海道神宮</a>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=札幌伏見稲荷神社" target="_blank" class="map-btn">📍 伏見稻荷神社</a>
             <a href="https://www.youtube.com/watch?v=7rQ4r11Af9E" target="_blank" class="map-btn ref-btn">▶️ Video</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=桜本商店円山店" target="_blank" class="map-btn">🍶 桜本商店</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=桜本商店円山店" target="_blank" class="map-btn">🍶 桜本商店(酒)</a>
         </div>
         <div class="timeline-item">
-            <span class="time">16:00 – 18:00</span>
-            <div class="event-title">大通 / 狸小路</div>
+            <span class="time">15:00 – 16:00</span>
+            <div class="event-title">大通、狸小路</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=大通公園+札幌" target="_blank" class="map-btn">📍 大通公園</a>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=狸小路商店街" target="_blank" class="map-btn">📍 狸小路</a>
         </div>
+
         <div class="timeline-item">
-            <span class="time">18:00 – 19:00</span>
-            <div class="event-title">晚餐</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=スープカレーGARAKU札幌本店"
-            target="_blank" class="map-btn">📍 GARAKU 札幌本店</a>
-        </div>
-        <div class="timeline-item">
-            <span class="time">19:30 – 21:00</span>
+            <span class="time">16:30 – 18:00</span>
             <div class="event-title">藻岩山夜景</div>
             <div class="event-desc">需要門票（最晚 22:00）。</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=もいわ山ロープウェイ+山麓駅" target="_blank" class="map-btn">📍 藻岩山纜車山麓站</a>
-            <a href="https://hokkaido.letsgojp.com/archives/640881/" target="_blank" class="map-btn ref-btn">🔗 參考</a>
+            <a href="https://hokkaido.letsgojp.com/archives/640881/" target="_blank" class="map-btn ref-btn">🔗 Reference</a>
         </div>
+
         <div class="timeline-item">
-            <span class="time">21:00 – 22:00</span>
-            <div class="event-title">藥妝逛街 & 休息</div>
-            <div class="event-desc">自由活動。</div>
+            <span class="time">18:00 – 19:00</span>
+            <div class="event-title">晚餐 湯咖哩</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=スープカレーGARAKU札幌本店"
+            target="_blank" class="map-btn">📍 GARAKU 札幌本店</a>
         </div>
     </div>
 
@@ -593,11 +656,7 @@
     <div class="day-card">
         <div class="day-header">
             <span class="day-number">Day 7</span>
-            <span class="day-date">11/21 (六) 札幌 ➔ 新千歲 ➔ 現實</span>
-        </div>
-        <div class="timeline-item">
-            <span class="time">08:00 – 08:30</span>
-            <div class="event-title">早餐</div>
+            <span class="day-date">11/21 (SAT) 札幌 ➔ 新千歲 ➔ 現實</span>
         </div>
         <div class="timeline-item">
             <span class="time">09:00 – 09:40</span>
@@ -612,19 +671,21 @@
         <div class="timeline-item">
             <span class="time">11:00 – 12:00</span>
             <div class="event-title">加油 & 還車 / 午餐</div>
-            <div class="event-desc">還車前加滿油（レギュラー），12:00 前完成還車。</div>
+            <div class="event-desc">還車前加滿油（レギュラー），11:40 前完成還車。</div>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=ガソリンスタンド+新千歳空港" target="_blank" class="map-btn">📍 機場附近加油站</a>
         </div>
         <div class="timeline-item">
             <span class="time">13:00 – 14:00</span>
             <div class="event-title">退稅 & 伴手禮</div>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=新千歳空港+国内線ターミナル" target="_blank" class="map-btn">📍 新千歲機場國內線商店街</a>
+            <div class="event-desc">VJW QR CODE</div>
         </div>
         <div class="timeline-item">
             <span class="time">15:20 – 19:05</span>
             <div class="event-title">CTS T1 ✈️ 桃園 TPE T1</div>
         </div>
     </div>
+
+
 </div>
 </body>
 </html>
