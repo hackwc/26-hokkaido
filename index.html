@@ -224,26 +224,27 @@
             margin-bottom: 10px;
         }
 
-/* Day 5 左右雙方案 */
-.day5-options {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-    padding: 15px;
-}
 
-.day5-column {
-    min-width: 0;
-}
+        .container > .day-card:nth-of-type(4)  { --day: #A9705F; } 
+        .container > .day-card:nth-of-type(5)  { --day: #A88442; } 
+        .container > .day-card:nth-of-type(6)  { --day: #5F8468; } 
+        .container > .day-card:nth-of-type(7)  { --day: #587A99; } 
+        .container > .day-card:nth-of-type(8)  { --day: #81709B; } 
+        .container > .day-card:nth-of-type(9)  { --day: #4F8582; } 
+        .container > .day-card:nth-of-type(10) { --day: #7D6B58; } 
 
-@media (max-width: 768px) {
-    .day5-options {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-
+        .container > .day-card:nth-of-type(n+4) {
+            border-top: 4px solid var(--day);
+        }
+        .container > .day-card:nth-of-type(n+4) .day-number {
+            color: var(--day);
+        }
+        .container > .day-card:nth-of-type(n+4) .timeline-item::before {
+            background-color: var(--day);
+        }
+        .container > .day-card:nth-of-type(n+4) .time {
+            color: #8A7457; 
+        }
     </style>
 </head>
 <body>
@@ -252,15 +253,12 @@
         <h1>hokkaido 11/15-21</h1>
     </header>
 
-
-    <!-- 路線圖 -->
     <div class="section-title">Route</div>
     <div class="day-card">
         <img class="route-map" src="images/route-map.png?v=4" alt="MAP">
         <p class="event-desc" style="margin-top:10px;margin-bottom:0;">① 新千歲 → ② 登別 → ③ 洞爺湖 → ④ 札幌 → ⑤ 小樽 → ⑥ 札幌 → ⑦ 新千歲 </p>
     </div>
-
-    <!-- 每日行程 -->
+    
     <div class="section-title">🗓️ Daily Itinerary and Map</div>
 
     <!-- Day 1 -->
